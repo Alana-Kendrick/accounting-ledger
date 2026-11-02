@@ -37,4 +37,11 @@ public class Transaction {
     public double getAmount () {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "date=" + date +
+                '}';
+    }
 }
