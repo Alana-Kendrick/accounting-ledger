@@ -89,8 +89,8 @@ public class FinancialTracker {
 
             while ((line = reader.readLine()) != null) {
                 String[] splitTransaction = line.split("\\|");
-                LocalDate date = parseDate(splitTransaction[0]);
-                LocalTime time = parseTime(splitTransaction[1]);
+                LocalDate date = LocalDate.parse(splitTransaction[0], DATE_FMT);
+                LocalTime time = LocalTime.parse(splitTransaction[1], TIME_FMT);
                 String description = splitTransaction[2];
                 String vendor = splitTransaction[3];
                 double amount = Double.parseDouble(splitTransaction[4]);
@@ -124,7 +124,13 @@ public class FinancialTracker {
         // Convert date and time to proper data type and format
         System.out.println("Description: ");
         String description = scanner.nextLine();
-        System.out.println();
+        System.out.println("Vendor: ");
+        String vendor = scanner.nextLine();
+        System.out.println("Amount: $");
+        double amount = scanner.nextDouble();
+
+        Transaction transaction = new Transaction();
+        transactions.add(transaction);
     }
 
     /**
@@ -224,11 +230,6 @@ public class FinancialTracker {
        ------------------------------------------------------------------ */
     private static LocalDate parseDate(String s) {
         /* TODO – return LocalDate or null */
-        return null;
-    }
-
-    private static LocalTime parseTime(String s) {
-        /* TODO – return LocalTime or null */
         return null;
     }
 
