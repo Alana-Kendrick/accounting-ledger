@@ -126,8 +126,18 @@ public class FinancialTracker {
         String description = scanner.nextLine();
         System.out.print("Vendor: ");
         String vendor = scanner.nextLine();
-        System.out.print("Amount: $");
-        double amount = scanner.nextDouble(); // validate positivity
+
+        boolean positive = false;
+        double amount;
+        do {
+            System.out.print("Amount: $");
+            amount = scanner.nextDouble();
+            if (amount >= 0) {
+                positive = true;
+            } else {
+                System.out.println("Invalid input. Enter a positive amount.");
+            }
+        } while (!positive);
 
         Transaction transaction = new Transaction(date, time, description, vendor, amount);
         transactions.add(transaction);
