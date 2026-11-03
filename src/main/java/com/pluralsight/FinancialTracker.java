@@ -116,11 +116,12 @@ public class FinancialTracker {
      * Store the amount as-is (positive) and append to the file.
      */
     private static void addDeposit(Scanner scanner) {
-        // TODO
         System.out.println("New Deposit");
         System.out.println("___________________");
         System.out.print("Date and time of deposit (yyyy-MM-dd HH:mm:ss): ");
-        String dateTime = scanner.nextLine(); // split using substring then parse into proper data types & separate variables
+        String dateTime = scanner.nextLine();
+        LocalDate date = LocalDate.parse(dateTime.substring(0, 10), DATE_FMT);
+        LocalTime time = LocalTime.parse(dateTime.substring(11), TIME_FMT);
         System.out.print("Description: ");
         String description = scanner.nextLine();
         System.out.print("Vendor: ");
@@ -128,8 +129,10 @@ public class FinancialTracker {
         System.out.print("Amount: $");
         double amount = scanner.nextDouble(); // validate positivity
 
-        Transaction transaction = new Transaction();
+        Transaction transaction = new Transaction(date, time, description, vendor, amount);
         transactions.add(transaction);
+
+        // Write into .csv file
     }
 
     /**
