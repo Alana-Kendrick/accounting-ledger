@@ -120,8 +120,8 @@ public class FinancialTracker {
         System.out.println("___________________");
         System.out.print("Date and time of deposit (yyyy-MM-dd HH:mm:ss): ");
         String dateTime = scanner.nextLine();
-        LocalDate date = LocalDate.parse(dateTime.substring(0, 10), DATE_FMT);
-        LocalTime time = LocalTime.parse(dateTime.substring(11), TIME_FMT);
+        LocalDate date = LocalDate.parse(dateTime.substring(0, 10).trim(), DATE_FMT);
+        LocalTime time = LocalTime.parse(dateTime.substring(11).trim(), TIME_FMT);
         System.out.print("Description: ");
         String description = scanner.nextLine();
         System.out.print("Vendor: ");
