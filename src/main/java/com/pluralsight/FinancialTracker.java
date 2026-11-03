@@ -120,14 +120,13 @@ public class FinancialTracker {
         System.out.println("New Deposit");
         System.out.println("___________________");
         System.out.print("Date and time of deposit (yyyy-MM-dd HH:mm:ss): ");
-        String dateTime = scanner.nextLine();
-        // Convert date and time to proper data type and format
-        System.out.println("Description: ");
+        String dateTime = scanner.nextLine(); // split using substring then parse into proper data types & separate variables
+        System.out.print("Description: ");
         String description = scanner.nextLine();
-        System.out.println("Vendor: ");
+        System.out.print("Vendor: ");
         String vendor = scanner.nextLine();
-        System.out.println("Amount: $");
-        double amount = scanner.nextDouble();
+        System.out.print("Amount: $");
+        double amount = scanner.nextDouble(); // validate positivity
 
         Transaction transaction = new Transaction();
         transactions.add(transaction);
