@@ -143,6 +143,8 @@ public class FinancialTracker {
         transactions.add(transaction);
 
         // Write into .csv file
+
+        System.out.println("Your deposit has successfully been added to your ledger.");
     }
 
     /**
