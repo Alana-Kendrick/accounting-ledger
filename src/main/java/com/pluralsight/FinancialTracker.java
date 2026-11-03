@@ -78,17 +78,13 @@ public class FinancialTracker {
      * • Each line looks like: date|time|description|vendor|amount
      */
     public static void loadTransactions(String fileName) {
-        // TODO: create file if it does not exist, then read each line,
-        //       parse the five fields, build a Transaction object,
-        //       and add it to the transactions list.
-
         try {
-            File file = new File("transactions.csv");
+            File file = new File(fileName);
             if (file.createNewFile()) {
-                fileName = file.getName();
+                System.out.println("Created new file");
             }
 
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -121,6 +117,14 @@ public class FinancialTracker {
      */
     private static void addDeposit(Scanner scanner) {
         // TODO
+        System.out.println("New Deposit");
+        System.out.println("___________________");
+        System.out.print("Date and time of deposit (yyyy-MM-dd HH:mm:ss): ");
+        String dateTime = scanner.nextLine();
+        // Convert date and time to proper data type and format
+        System.out.println("Description: ");
+        String description = scanner.nextLine();
+        System.out.println();
     }
 
     /**
