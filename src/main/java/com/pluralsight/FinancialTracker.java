@@ -83,13 +83,27 @@ public class FinancialTracker {
         //       and add it to the transactions list.
 
         try {
+            File file = new File("transactions.csv");
+            if (file.createNewFile()) {
+                fileName = file.getName();
+            }
+
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             while ((line = reader.readLine()) != null) {
                 String[] splitTransaction = line.split("\\|");
                 LocalDate date = parseDate(splitTransaction[0]);
+                LocalTime time = parseTime(splitTransaction[1]);
+                String description = splitTransaction[2];
+                String vendor = splitTransaction[3];
+                double amount = Double.parseDouble(splitTransaction[4]);
+
+                Transaction transaction = new Transaction(date, time, description, vendor, amount);
+                transactions.add(transaction);
             }
+
+            reader.close();
         } catch (Exception e) {
             System.out.println("Something went wrong!");
         }
@@ -206,6 +220,11 @@ public class FinancialTracker {
        ------------------------------------------------------------------ */
     private static LocalDate parseDate(String s) {
         /* TODO – return LocalDate or null */
+        return null;
+    }
+
+    private static LocalTime parseTime(String s) {
+        /* TODO – return LocalTime or null */
         return null;
     }
 
