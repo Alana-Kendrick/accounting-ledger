@@ -40,6 +40,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
+        return String.format("%tF|%tT|%s|%s|%.2f", date, time, description, vendor, amount);
     }
 }
