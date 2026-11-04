@@ -134,7 +134,6 @@ public class FinancialTracker {
     }
 
     private static void addPayment(Scanner scanner) {
-        // TODO
         System.out.println("New Payment");
         System.out.println("___________________");
         System.out.print("Date and time of payment (yyyy-MM-dd HH:mm:ss): ");
@@ -204,7 +203,19 @@ public class FinancialTracker {
        Display helpers: show data in neat columns
        ------------------------------------------------------------------ */
     private static void displayLedger() { /* TODO – print all transactions in column format, newest first */
+        // Sort arraylist from newest to oldest here
 
+        System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("----------------------------------------------------------------------------------------------------");
+        for (Transaction transaction : transactions) {
+            System.out.printf("%9tF | %8tT | %35s | %25s | %10.2f%n",
+                    transaction.getDate(),
+                    transaction.getTime(),
+                    transaction.getDescription(),
+                    transaction.getVendor(),
+                    transaction.getAmount()
+            );
+        }
     }
 
     private static void displayDeposits() { /* TODO – only amount > 0               */ }
