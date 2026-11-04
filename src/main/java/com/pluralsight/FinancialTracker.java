@@ -1,8 +1,6 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -142,7 +140,13 @@ public class FinancialTracker {
         Transaction transaction = new Transaction(date, time, description, vendor, amount);
         transactions.add(transaction);
 
-        // Write into .csv file
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true));
+            writer.write(transaction.toString());
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Something went wrong!");
+        }
 
         System.out.println("Your deposit has successfully been added to your ledger.");
     }
