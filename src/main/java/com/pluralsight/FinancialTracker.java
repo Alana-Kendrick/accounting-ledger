@@ -8,17 +8,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
- * Capstone skeleton – personal finance tracker.
- * ------------------------------------------------
  * File format  (pipe-delimited)
  *     yyyy-MM-dd|HH:mm:ss|description|vendor|amount
  * A deposit has a positive amount; a payment is stored
  * as a negative amount.
- *
- * TODO: create the Transaction class in this package first.
- *       One object = one line of the file. Decide its fields from
- *       the file format above, add a constructor and getters.
- *       This class does not compile until Transaction exists.
  */
 public class FinancialTracker {
 
@@ -70,11 +63,6 @@ public class FinancialTracker {
        File I/O
        ------------------------------------------------------------------ */
 
-    /**
-     * Load transactions from FILE_NAME.
-     * • If the file doesn’t exist, create an empty one so that future writes succeed.
-     * • Each line looks like: date|time|description|vendor|amount
-     */
     public static void loadTransactions(String fileName) {
         try {
             File file = new File(fileName);
@@ -107,12 +95,6 @@ public class FinancialTracker {
        Add new transactions
        ------------------------------------------------------------------ */
 
-    /**
-     * Prompt for ONE date+time string in the format
-     * "yyyy-MM-dd HH:mm:ss", plus description, vendor, amount.
-     * Validate that the amount entered is positive.
-     * Store the amount as-is (positive) and append to the file.
-     */
     private static void addDeposit(Scanner scanner) {
         System.out.println("New Deposit");
         System.out.println("___________________");
@@ -151,13 +133,44 @@ public class FinancialTracker {
         System.out.println("Your deposit has successfully been added to your ledger.");
     }
 
-    /**
-     * Same prompts as addDeposit.
-     * Amount must be entered as a positive number,
-     * then converted to a negative amount before storing.
-     */
     private static void addPayment(Scanner scanner) {
         // TODO
+        System.out.println("New Payment");
+        System.out.println("___________________");
+        System.out.print("Date and time of payment (yyyy-MM-dd HH:mm:ss): ");
+        String dateTime = scanner.nextLine();
+        LocalDate date = LocalDate.parse(dateTime.substring(0, 10).trim(), DATE_FMT);
+        LocalTime time = LocalTime.parse(dateTime.substring(11).trim(), TIME_FMT);
+        System.out.print("Description: ");
+        String description = scanner.nextLine();
+        System.out.print("Vendor: ");
+        String vendor = scanner.nextLine();
+
+        boolean positive = false;
+        double amount;
+        do {
+            System.out.print("Amount: $");
+            amount = scanner.nextDouble();
+            if (amount >= 0) {
+                positive = true;
+                amount *= -1;
+            } else {
+                System.out.println("Invalid input. Enter a positive amount.");
+            }
+        } while (!positive);
+
+        Transaction transaction = new Transaction(date, time, description, vendor, amount);
+        transactions.add(transaction);
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true));
+            writer.write(transaction.toString());
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Something went wrong!");
+        }
+
+        System.out.println("Your payment has successfully been added to your ledger.");
     }
 
     /* ------------------------------------------------------------------
@@ -190,7 +203,9 @@ public class FinancialTracker {
     /* ------------------------------------------------------------------
        Display helpers: show data in neat columns
        ------------------------------------------------------------------ */
-    private static void displayLedger() { /* TODO – print all transactions in column format, newest first */ }
+    private static void displayLedger() { /* TODO – print all transactions in column format, newest first */
+
+    }
 
     private static void displayDeposits() { /* TODO – only amount > 0               */ }
 
