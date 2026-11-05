@@ -43,8 +43,8 @@ public class FinancialTracker {
             String input = scanner.nextLine().trim();
 
             switch (input.toUpperCase()) {
-                case "D" -> addDeposit(scanner);
-                case "P" -> addPayment(scanner);
+                case "D" -> addTransaction(scanner, "D");
+                case "P" -> addTransaction(scanner, "P");
                 case "L" -> ledgerMenu(scanner);
                 case "X" -> running = false;
                 default -> System.out.println("Invalid option");
@@ -89,10 +89,19 @@ public class FinancialTracker {
        Add new transactions
        ------------------------------------------------------------------ */
 
-    private static void addDeposit(Scanner scanner) {
-        System.out.println("New Deposit");
+    private static void addTransaction(Scanner scanner, String input) {
+        String type = "Transaction";
+        String typeLowerCase = "transaction";
+        if (input.equals("D")) {
+            type = "Deposit";
+            typeLowerCase = "deposit";
+        } else if (input.equals("P")) {
+            type = "Payment";
+            typeLowerCase = "payment";
+        }
+        System.out.println("New " + type);
         System.out.println("___________________");
-        System.out.print("Date and time of deposit (yyyy-MM-dd HH:mm:ss): ");
+        System.out.print("Date and time of " + typeLowerCase + " (yyyy-MM-dd HH:mm:ss): ");
         String dateTime = scanner.nextLine();
         LocalDate date = LocalDate.parse(dateTime.substring(0, 10).trim(), DATE_FMT);
         LocalTime time = LocalTime.parse(dateTime.substring(11).trim(), TIME_FMT);
@@ -108,6 +117,9 @@ public class FinancialTracker {
             amount = scanner.nextDouble();
             if (amount >= 0) {
                 positive = true;
+                if (input.equals("P")) {
+                    amount *= -1;
+                }
             } else {
                 System.out.println("Invalid input. Enter a positive amount.");
             }
@@ -124,7 +136,7 @@ public class FinancialTracker {
             System.out.println("Something went wrong!");
         }
 
-        System.out.println("Your deposit has successfully been added to your ledger.");
+        System.out.println("Your " + typeLowerCase + " has been successfully added to your ledger.");
     }
 
     private static void addPayment(Scanner scanner) {
