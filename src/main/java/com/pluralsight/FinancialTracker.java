@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /*
@@ -202,25 +203,45 @@ public class FinancialTracker {
     /* ------------------------------------------------------------------
        Display helpers: show data in neat columns
        ------------------------------------------------------------------ */
+    private static void printTransactions(Transaction transaction) {
+        System.out.printf("%9tF | %8tT | %35s | %25s | %10.2f%n",
+                transaction.getDate(),
+                transaction.getTime(),
+                transaction.getDescription(),
+                transaction.getVendor(),
+                transaction.getAmount()
+        );
+    }
+
     private static void displayLedger() { /* TODO – print all transactions in column format, newest first */
         // Sort arraylist from newest to oldest here
-
+        // Already tried using Collections.reverse(), but that did not produce the desired result
         System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("----------------------------------------------------------------------------------------------------");
         for (Transaction transaction : transactions) {
-            System.out.printf("%9tF | %8tT | %35s | %25s | %10.2f%n",
-                    transaction.getDate(),
-                    transaction.getTime(),
-                    transaction.getDescription(),
-                    transaction.getVendor(),
-                    transaction.getAmount()
-            );
+            printTransactions(transaction);
         }
     }
 
-    private static void displayDeposits() { /* TODO – only amount > 0               */ }
+    private static void displayDeposits() {
+        System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("----------------------------------------------------------------------------------------------------");
+        for (Transaction transaction : transactions) {
+            if (transaction.getAmount() > 0) {
+                printTransactions(transaction);
+            }
+        }
+    }
 
-    private static void displayPayments() { /* TODO – only amount < 0               */ }
+    private static void displayPayments() {
+        System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("----------------------------------------------------------------------------------------------------");
+        for (Transaction transaction : transactions) {
+            if (transaction.getAmount() < 0) {
+                printTransactions(transaction);
+            }
+        }
+    }
 
     /* ------------------------------------------------------------------
        Reports menu
