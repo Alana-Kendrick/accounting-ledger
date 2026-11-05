@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class FinancialTracker {
@@ -184,9 +183,9 @@ public class FinancialTracker {
             String input = scanner.nextLine().trim();
 
             switch (input.toUpperCase()) {
-                case "A" -> displayLedger();
-                case "D" -> displayDeposits();
-                case "P" -> displayPayments();
+                case "A" -> displayTransactions('A');
+                case "D" -> displayTransactions('D');
+                case "P" -> displayTransactions('P');
                 case "R" -> reportsMenu(scanner);
                 case "H" -> running = false;
                 default -> System.out.println("Invalid option");
@@ -207,33 +206,28 @@ public class FinancialTracker {
         );
     }
 
-    private static void displayLedger() { /* TODO – print all transactions in column format, newest first */
+    private static void displayTransactions(char input) {
         // Sort arraylist from newest to oldest here
         // Already tried using Collections.reverse(), but that did not produce the desired result
-        System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
-        System.out.println("----------------------------------------------------------------------------------------------------");
-        for (Transaction transaction : transactions) {
-            printTransactions(transaction);
-        }
-    }
 
-    private static void displayDeposits() {
         System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("----------------------------------------------------------------------------------------------------");
         for (Transaction transaction : transactions) {
-            if (transaction.getAmount() > 0) {
-                printTransactions(transaction);
+            switch (input) {
+                case 'A':
+                    printTransactions(transaction);
+                    break;
+                case 'D':
+                    if (transaction.getAmount() > 0) {
+                        printTransactions(transaction);
+                    }
+                    break;
+                case 'P':
+                    if (transaction.getAmount() < 0) {
+                        printTransactions(transaction);
+                    }
             }
-        }
-    }
 
-    private static void displayPayments() {
-        System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
-        System.out.println("----------------------------------------------------------------------------------------------------");
-        for (Transaction transaction : transactions) {
-            if (transaction.getAmount() < 0) {
-                printTransactions(transaction);
-            }
         }
     }
 
