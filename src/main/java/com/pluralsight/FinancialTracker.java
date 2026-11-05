@@ -169,7 +169,7 @@ public class FinancialTracker {
     /* ------------------------------------------------------------------
        Display helpers: show data in neat columns
        ------------------------------------------------------------------ */
-    private static void printTransactions(Transaction transaction) {
+    private static void printTransaction(Transaction transaction) {
         System.out.printf("%9tF | %8tT | %35s | %25s | %10.2f%n",
                 transaction.getDate(),
                 transaction.getTime(),
@@ -188,16 +188,16 @@ public class FinancialTracker {
         for (Transaction transaction : transactions) {
             switch (input) {
                 case 'A':
-                    printTransactions(transaction);
+                    printTransaction(transaction);
                     break;
                 case 'D':
                     if (transaction.getAmount() > 0) {
-                        printTransactions(transaction);
+                        printTransaction(transaction);
                     }
                     break;
                 case 'P':
                     if (transaction.getAmount() < 0) {
-                        printTransactions(transaction);
+                        printTransaction(transaction);
                     }
             }
 
@@ -227,7 +227,10 @@ public class FinancialTracker {
                 case "2" -> {/* TODO – previous month report */ }
                 case "3" -> {/* TODO – year-to-date report   */ }
                 case "4" -> {/* TODO – previous year report  */ }
-                case "5" -> {/* TODO – prompt for vendor then report */ }
+                case "5" -> {
+                    System.out.print("Vendor: ");
+                    filterTransactionsByVendor(scanner.nextLine());
+                }
                 case "6" -> customSearch(scanner);
                 case "0" -> running = false;
                 default -> System.out.println("Invalid option");
@@ -244,6 +247,11 @@ public class FinancialTracker {
 
     private static void filterTransactionsByVendor(String vendor) {
         // TODO – iterate transactions, print those with matching vendor
+        for (Transaction transaction : transactions) {
+            if (transaction.getVendor().equalsIgnoreCase(vendor)) {
+                printTransaction(transaction);
+            }
+        }
     }
 
     private static void customSearch(Scanner scanner) {
