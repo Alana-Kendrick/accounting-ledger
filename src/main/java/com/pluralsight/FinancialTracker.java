@@ -139,45 +139,6 @@ public class FinancialTracker {
         System.out.println("Your " + typeLowerCase + " has been successfully added to your ledger.");
     }
 
-    private static void addPayment(Scanner scanner) {
-        System.out.println("New Payment");
-        System.out.println("___________________");
-        System.out.print("Date and time of payment (yyyy-MM-dd HH:mm:ss): ");
-        String dateTime = scanner.nextLine();
-        LocalDate date = LocalDate.parse(dateTime.substring(0, 10).trim(), DATE_FMT);
-        LocalTime time = LocalTime.parse(dateTime.substring(11).trim(), TIME_FMT);
-        System.out.print("Description: ");
-        String description = scanner.nextLine();
-        System.out.print("Vendor: ");
-        String vendor = scanner.nextLine();
-
-        boolean positive = false;
-        double amount;
-        do {
-            System.out.print("Amount: $");
-            amount = scanner.nextDouble();
-            if (amount >= 0) {
-                positive = true;
-                amount *= -1;
-            } else {
-                System.out.println("Invalid input. Enter a positive amount.");
-            }
-        } while (!positive);
-
-        Transaction transaction = new Transaction(date, time, description, vendor, amount);
-        transactions.add(transaction);
-
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true));
-            writer.write(transaction.toString());
-            writer.close();
-        } catch (Exception e) {
-            System.out.println("Something went wrong!");
-        }
-
-        System.out.println("Your payment has successfully been added to your ledger.");
-    }
-
     /* ------------------------------------------------------------------
        Ledger menu
        ------------------------------------------------------------------ */
