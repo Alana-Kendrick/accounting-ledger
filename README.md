@@ -1,4 +1,4 @@
-# Project Title
+# Accounting Ledger
 
 <!-- HOW TO USE THIS TEMPLATE
      Save it as README.md at the root of your project, next to pom.xml. Replace every comment like this one
@@ -6,13 +6,14 @@
      Two sections are optional and say so: Class Diagram, and Data and configuration. When your project does not
      need one, delete the whole section, heading included. Every other section stays. -->
 
-<!-- One sentence under the title: what the app is, for whom.
-     Example: A console app that keeps a store's inventory in a csv file and lets a clerk search it. -->
+A console app that keeps a user's transactions in a csv file and lets the user add to or browse it with filters.
 
 ## Description of the Project
 
 <!-- Three to five sentences. What the application does, who uses it, what problem it solves.
      Write it for someone who has never seen the workbook: a recruiter, a classmate, you in six months. -->
+
+This project is 
 
 ## Features
 
@@ -48,25 +49,18 @@
 1. Clone this repository, or download it as a zip and unzip it.
 2. In IntelliJ: File > Open, pick the project folder (the one that holds `pom.xml`), press Open.
 3. Wait for IntelliJ to finish indexing (progress bar at the bottom).
-4. Open `src/main/java/com/pluralsight/YourMainClassName.java`. <!-- replace YourMainClassName with the class that has main -->
+4. Open `src/main/java/com/pluralsight/FinancialTracker.java`.
 5. Right-click inside the file and choose Run 'YourMainClassName.main()'.
 
 ### Data and configuration
 
-<!-- OPTIONAL. Anything the program needs that is not code: data files and where they must sit, files the
-     program creates, a database script to run first, a settings file to edit (connection, port).
-     If there is nothing, delete this subsection, heading included.
-     Example:
-     - `inventory.csv` sits at the project root, next to `pom.xml`. The program reads it at start.
-     - `logs.txt` is created by the program at the project root on the first run. -->
-
--
+-`transactions.csv` sits at the project root, next to `pom.xml`. The program reads it at start and appends new transactions 
+as needed. The program will create this file if it does not already exist.
 
 ## Technologies Used
 
-- Java 17
+- Java 17 (Maven)
 - IntelliJ IDEA
-<!-- Add anything else you used: a library, Maven plugins, an external tool. For a console app this list is short. That is fine. -->
 
 ## Demo
 
@@ -106,19 +100,16 @@
 
 ## Resources
 
-<!-- What helped you: the workbook, the week's hub pages, a tutorial, a documentation page. Real links. -->
-
 - Java YearUp Fall 2026 hub: <https://raymaroun.github.io/yearup-java-fall2026/>
--
+- Official Java Documentation by Oracle: <https://docs.oracle.com/javase/tutorial/index.html>
+- W3Schools Java Tutorials: <https://www.w3schools.com/java/>
+- Instructor Raymond's YearUp GitHub <https://github.com/RayMaroun/yearup-fall-section-8-2026>
 
 ## Author
 
-<!-- Your name and, if you like, your GitHub profile link. For a team workshop, one line per person with what each one built. -->
-
-- **Your Name**
+- **Alana Kendrick**
 
 ## Thanks
 
-<!-- Optional. The people who helped: the instructor, a classmate who debugged with you, a mentor. -->
-
-- Thank you to ... for ...
+- Thank you to Autumn, Jennifer, and Brendan for discussions, problem-solving sessions, and tips.
+- Thank you to Raymond for academic guidance, the visual hub, starter code, and the explanations.
