@@ -233,15 +233,16 @@ public class FinancialTracker {
 
             switch (input) {
                 case "1" -> {
-                    dateString = year + "-" + month + "01";
+                    dateString = year + "-" + month + "-01";
                     start = LocalDate.parse(dateString, DATE_FMT);
                     System.out.println("Month to Date:");
                     System.out.println();
-                    System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
-                    System.out.println("----------------------------------------------------------------------------------------------------");
+                    transactionHeader();
                     filterTransactionsByDate(start, today);
                 }
-                case "2" -> {/* TODO – previous month report */ }
+                case "2" -> {
+
+                }
                 case "3" -> {/* TODO – year-to-date report   */ }
                 case "4" -> {/* TODO – previous year report  */ }
                 case "5" -> {
@@ -261,8 +262,10 @@ public class FinancialTracker {
     private static void filterTransactionsByDate(LocalDate start, LocalDate end) {
         // TODO – iterate transactions, print those within the range
         for (Transaction transaction : transactions) {
-            if (transaction.getDate().isAfter(start) || transaction.getDate().equals(start)) {
-                if (transaction.getDate().isBefore(end) || transaction.getDate().equals(end)) {
+            int startResult = transaction.getDate().compareTo(start);
+            int endResult = transaction.getDate().compareTo(end);
+            if (startResult >= 0) {
+                if (endResult <= 0) {
                     printTransaction(transaction);
                 }
             }
