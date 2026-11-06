@@ -221,9 +221,22 @@ public class FinancialTracker {
             System.out.println("0) Back");
 
             String input = scanner.nextLine().trim();
+            LocalDate today = LocalDate.now();
+            int month = today.getMonthValue();
+            int year = today.getYear();
+            String dateString;
+            LocalDate start, end;
 
             switch (input) {
-                case "1" -> {/* TODO – month-to-date report */ }
+                case "1" -> {
+                    dateString = year + "-" + month + "01";
+                    start = LocalDate.parse(dateString, DATE_FMT);
+                    System.out.println("Month to Date:");
+                    System.out.println();
+                    System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+                    System.out.println("----------------------------------------------------------------------------------------------------");
+                    filterTransactionsByDate(start, today);
+                }
                 case "2" -> {/* TODO – previous month report */ }
                 case "3" -> {/* TODO – year-to-date report   */ }
                 case "4" -> {/* TODO – previous year report  */ }
@@ -243,10 +256,16 @@ public class FinancialTracker {
        ------------------------------------------------------------------ */
     private static void filterTransactionsByDate(LocalDate start, LocalDate end) {
         // TODO – iterate transactions, print those within the range
+        for (Transaction transaction : transactions) {
+            if (transaction.getDate().isAfter(start) || transaction.getDate().equals(start)) {
+                if (transaction.getDate().isBefore(end) || transaction.getDate().equals(end)) {
+                    printTransaction(transaction);
+                }
+            }
+        }
     }
 
     private static void filterTransactionsByVendor(String vendor) {
-        // TODO – iterate transactions, print those with matching vendor
         for (Transaction transaction : transactions) {
             if (transaction.getVendor().equalsIgnoreCase(vendor)) {
                 printTransaction(transaction);
