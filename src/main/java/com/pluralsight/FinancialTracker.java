@@ -184,10 +184,12 @@ public class FinancialTracker {
         System.out.println("----------------------------------------------------------------------------------------------------");
     }
 
-    private static void displayTransactions(char input) {
-        // Sort arraylist from newest to oldest here
-        // Already tried using Collections.reverse(), but that did not produce the desired result
+    public static void sortList() {
+        transactions.sort((a, b) -> b.getDate().compareTo(a.getDate()));
+    }
 
+    private static void displayTransactions(char input) {
+        sortList();
         transactionHeader();
         for (Transaction transaction : transactions) {
             switch (input) {
@@ -230,6 +232,8 @@ public class FinancialTracker {
             int year = today.getYear();
             String dateString;
             LocalDate start, end;
+
+            sortList();
 
             switch (input) {
                 case "1" -> {
@@ -279,6 +283,7 @@ public class FinancialTracker {
 
                 case "5" -> {
                     System.out.print("Vendor: ");
+                    transactionHeader();
                     filterTransactionsByVendor(scanner.nextLine());
                 }
                 case "6" -> customSearch(scanner);
