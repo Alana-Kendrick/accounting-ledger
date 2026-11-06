@@ -179,12 +179,16 @@ public class FinancialTracker {
         );
     }
 
+    public static void transactionHeader() {
+        System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("----------------------------------------------------------------------------------------------------");
+    }
+
     private static void displayTransactions(char input) {
         // Sort arraylist from newest to oldest here
         // Already tried using Collections.reverse(), but that did not produce the desired result
 
-        System.out.printf(" %9s | %8s | %35s | %25s | %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
-        System.out.println("----------------------------------------------------------------------------------------------------");
+        transactionHeader();
         for (Transaction transaction : transactions) {
             switch (input) {
                 case 'A':
