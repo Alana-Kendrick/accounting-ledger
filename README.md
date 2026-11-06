@@ -44,6 +44,7 @@ month or year.
 
 - If you have transactions to be loaded into the ledger upon running the program, put them in a file named transactions.csv in the project's root 
 folder. The ledger will be populated with these items upon launching the application.
+- A "matching" vendor name is not case sensitive, but must include the whole
 
 ### Prerequisites
 
