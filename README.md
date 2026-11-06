@@ -1,43 +1,49 @@
 # Accounting Ledger
 
-<!-- HOW TO USE THIS TEMPLATE
-     Save it as README.md at the root of your project, next to pom.xml. Replace every comment like this one
-     with your own text; comments do not show on GitHub, so what you leave untouched shows as an empty heading.
-     Two sections are optional and say so: Class Diagram, and Data and configuration. When your project does not
-     need one, delete the whole section, heading included. Every other section stays. -->
-
 A console app that keeps a user's transactions in a csv file and lets the user add to or browse it with filters.
 
 ## Description of the Project
 
-<!-- Three to five sentences. What the application does, who uses it, what problem it solves.
-     Write it for someone who has never seen the workbook: a recruiter, a classmate, you in six months. -->
-
-This project is 
+The purpose of this project is to track all financial transactions for a
+business or for personal use. The user has the option to record and display both payments and deposits. The user 
+may also generate reports for transactions this month or year (to-date) as well as transactions for the previous 
+month or year.
 
 ## Features
 
-<!-- One bullet per thing the app can do, in the order of your menu. Mark bonuses.
-     For an API (Capstone 3), one line per endpoint instead: method, path, what it does.
-     Be honest: list what works. If something is half done, say so under Future Work instead.
-     Example:
-     - Shows every product in the store
-     - Searches products by name (bonus) -->
-
--
--
--
+- Displays home menu
+- Adds deposits to ledger 
+- Adds payments to ledger
+- Displays ledger menu
+- Exits application when prompted by user from home screen
+- Displays all ledger entries
+- Displays all deposits in ledger
+- Displays all payments in ledger
+- Displays reports menu
+- Displays month-to-date report
+- Displays previous month report
+- Displays year-to-date report
+- Displays previous year report
+- Searches transactions by vendor
+- Returns to ledger menu from reports menu when prompted
+- Returns to home menu from ledger menu when prompted
 
 ## User Stories
 
-<!-- The stories you worked from, one per bullet, in the format you learned in Workbook 3b:
-     As a [type of user], I want [some goal] so that [some reason].
-     Same text as the cards on your GitHub project board. -->
-
-- As a ..., I want ..., so that ...
-- As a ..., I want ..., so that ...
+- As a user, I want to be able to add deposits to my account so that I can keep my financial records updated and accurate.
+- As a user, I want to be able to use the program to make payments so that I can manage and track my finances in one app.
+- As a user, I want to be able to view all of my transactions in one place so that I can verify that everything is recorded correctly.
+- As a user, I want to be able to filter my search so that I may see specific types of transactions.
+- As a user, I want to be able to see my payments so that I can review them.
+- As a user, I want to be able to see all of my transactions so far this month so that I can make decisions based on recent transactions.
+- As a user, I want to be able to see all of my transactions from the previous month so that I can ensure that my recurring transactions are consistent.
+- As a user, I want to be able to see all of my transactions so far this year so that I can make annual budget decisions based on the year's transactions.
+- As a user, I want to be able to see all of my transactions from the previous year so that I can ensure that my recurring transactions are consistent.
 
 ## Setup
+
+- If you have transactions to be loaded into the ledger upon running the program, put them in a file named transactions.csv in the project's root 
+folder. The ledger will be populated with these items upon launching the application.
 
 ### Prerequisites
 
@@ -59,8 +65,9 @@ as needed. The program will create this file if it does not already exist.
 
 ## Technologies Used
 
-- Java 17 (Maven)
+- Java 17
 - IntelliJ IDEA
+- Maven build system
 
 ## Demo
 
