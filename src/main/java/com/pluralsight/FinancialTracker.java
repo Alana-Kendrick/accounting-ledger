@@ -265,7 +265,18 @@ public class FinancialTracker {
                     transactionHeader();
                     filterTransactionsByDate(start, today);
                 }
-                case "4" -> {/* TODO – previous year report  */ }
+                case "4" -> {
+                    year -= 1;
+                    dateString = year + "-01-01";
+                    start = LocalDate.parse(dateString, DATE_FMT);
+                    dateString = year + "-12-31";
+                    end = LocalDate.parse(dateString, DATE_FMT);
+                    System.out.println("Previous Year:");
+                    System.out.println();
+                    transactionHeader();
+                    filterTransactionsByDate(start, end);
+                }
+
                 case "5" -> {
                     System.out.print("Vendor: ");
                     filterTransactionsByVendor(scanner.nextLine());
