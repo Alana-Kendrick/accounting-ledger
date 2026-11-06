@@ -90,20 +90,29 @@ as needed. The program will create this file if it does not already exist.
 
 ## A piece of code I am proud of
 
-<!-- Paste one short block of your own code (5 to 15 lines) between the three backticks, then write two
-     or three sentences: what it does and why you chose to write it that way. This is what you show on
-     demo day and what you talk about in an interview. -->
-
 ```java
-
+private static void printTransaction(Transaction transaction) {
+        System.out.printf("%9tF | %8tT | %35s | %25s | %10.2f%n",
+                transaction.getDate(),
+                transaction.getTime(),
+                transaction.getDescription(),
+                transaction.getVendor(),
+                transaction.getAmount()
+        );
+    }
 ```
+I am proud of this code because it's neat, readable, and very useful. Instead of being DRY and typing this 
+statement out every time I needed it, I put it into a method. I was able to save a lot of time and space by formatting 
+my code this way.
 
 ## Future Work
 
 <!-- What you would add or fix next, one bullet each. Unfinished bonuses belong here. -->
 
--
--
+- Input bug - I would fix the input bug that causes the program to cycle through the home screen unprovoked after inputting 
+a new transaction.
+- I would complete the bonus custom search feature.
+- I would
 
 ## Resources
 
